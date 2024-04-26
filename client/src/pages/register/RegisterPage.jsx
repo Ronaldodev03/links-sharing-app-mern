@@ -50,7 +50,7 @@ const RegisterPage = () => {
         <div className="flex flex-col md:p-10">
           <h1 className="text-3xl font-bold text-zinc-800">Create account</h1>
           <p className="mt-2 text-base text-neutral-500">
-            Let&apso;s get you started sharing your links!
+            Let&apos;s get you started sharing your links!
           </p>
           <form
             className="flex flex-col gap-4 mt-8"
