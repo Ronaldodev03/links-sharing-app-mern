@@ -7,6 +7,7 @@ import { BASE_API_URL } from "../../utils/constants";
 import { EmailIcon, LoginLogo, PasswordIcon } from "../../utils/images";
 
 const LoginPage = () => {
+  const [inputType, setInputType] = useState("text");
   const [errorMsg, setErrorMsg] = useState("");
   const { updateLoginStatus } = useAuth();
   const navigate = useNavigate();
@@ -28,6 +29,15 @@ const LoginPage = () => {
         error.response.data || "Error during login. Try again later."
       );
     }
+  };
+
+  const toggleInputType = () => {
+    if (inputType === "text") {
+      setInputType("password");
+      return;
+    }
+
+    setInputType("text");
   };
 
   return (
@@ -72,6 +82,7 @@ const LoginPage = () => {
                   type="text"
                   id="email"
                   placeholder="e.g. alex@email.com"
+                  defaultValue="correo@gmail.com"
                   className="flex-auto self-stretch text-base text-zinc-800 focus:outline-none"
                   {...register("email", {
                     required: "Can't be empty",
@@ -103,14 +114,16 @@ const LoginPage = () => {
                 } border-solid`}
               >
                 <img
+                  onClick={toggleInputType}
                   src={PasswordIcon}
                   alt=""
-                  className="shrink-0 self-stretch my-auto w-4 aspect-square"
+                  className="shrink-0 self-stretch my-auto w-4 aspect-square cursor-pointer hover:scale-105 transition-all"
                 />
                 <input
-                  type="password"
+                  type={inputType}
                   id="password"
                   placeholder="Enter your password"
+                  defaultValue="12345678"
                   className="flex-auto self-stretch text-base text-zinc-800 focus:outline-none"
                   {...register("password", {
                     required: "Please check again",
